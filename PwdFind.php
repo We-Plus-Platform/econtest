@@ -30,13 +30,14 @@ function check_user()
         $sql_find="select id from find_back_captcha where user='$user'";
         $result_find = mysqli_query($hand, $sql_find);
         //$row_find = mysqli_fetch_array($result_find);
-        if(!$result_find)
+        if(!$result_find->num_rows)
         {
             $time=time()+300;
             $sql_c="insert into find_back_captcha(`captcha`,`generate_time`,`user`)values('$captcha','$time','$user')";
+            // echo $sql_c;
             $result_c = mysqli_query($hand, $sql_c);
             $captcha='你的验证码是：'.$captcha;
-            $mail=new MailSend($row_mail["email"],'重邮e站验证码',$captcha);
+            $mail=new MailSend($row_mail["email"],'竞赛报名系统——找回密码',$captcha);
             $mail->send($unspoken);
         }
         else
@@ -45,7 +46,7 @@ function check_user()
             $sql_c="update find_back_captcha set captcha='$captcha',generate_time='$time' where user='$user'";
             $result_c = mysqli_query($hand, $sql_c);
             $captcha='你的验证码是：'.$captcha;
-            $mail=new MailSend($row_mail["email"],'重邮e站验证码',$captcha);
+            $mail=new MailSend($row_mail["email"],'竞赛报名系统——找回密码',$captcha);
             $mail->send($unspoken);
         }
         $dan["msgCode"]=1;
@@ -74,7 +75,7 @@ function update_password()//此次有安全漏洞，记住以后修补
 {
     global $hand;
     $user=$_POST["user"];
-    $password=md5($_POST["password"]);
+    $password=$_POST["password"];
     $sql="update account_user set password='$password' where user='$user'";
     $result = mysqli_query($hand, $sql);
 }

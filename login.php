@@ -1,14 +1,13 @@
+
+<!doctype html>
 <?php
-include 'session.php';
+// include 'session.php';
 include 'configure.php';
-session_set_save_handler($handler, true);
 session_start();
-error_reporting(0);
 if($_SESSION['user']){
-    echo "<script>alert('您已登录！返回主页中...');window.location.href='index.php';</script>";
+    header('index.php');
 }
 ?>
-<!doctype html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -18,115 +17,12 @@ if($_SESSION['user']){
     <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css">
     <link type="text/css" rel="stylesheet" href="css/index.css">
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
-    <style>
-        .loginButton,.loginButton-s{
-            height: 50px;
-            color: white;
-            font-size: 25px;
-            width: 80%;
-            border-radius: 2px;
-            border: none;
-            background-color: #5cce99;
-            font-weight: 500;
-            box-shadow: 0 0 4px #50a074;
-            cursor: pointer;
-        }
-
-
-        .loginButton:hover {
-            text-shadow: 0 0 2px black;
-            background-color: #50a074;
-            box-shadow: 0 0 8px #50a074;
-        }
-
-        .loginButton-s{
-            height: 100%;
-            font-size: 16px;
-            width: 15%;
-            cursor: pointer;
-        }
-
-        .loginBox {
-            background-color: #FFFFFF;
-            display: flex;
-            width: 100%;
-            height: 600px;
-            box-shadow: 0 0 4em #333333;
-            margin-bottom: 100px;
-        }
-
-        .container {
-            min-width: 300px;
-        }
-
-        .loginSection {
-            padding: 10px;
-            width: 70%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .loginImage {
-            width: 30%;
-        }
-
-        .loginSectionBox {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            margin: auto;
-            height: 80%;
-            width: 50%;
-        }
-
-        .inputLine input {
-            color: #404040;
-            margin-top: 1%;
-            height: 30px;
-            width: 100%;
-            font-size: 20px;
-        }
-
-        .loginCaptchaArea {
-            display: flex;
-        }
-
-        .loginCaptchaArea input {
-            color: #404040;
-            margin-top: 1%;
-            height: 30px;
-            width: 90%;
-            font-size: 20px;
-        }
-
-        .bottomBar {
-            display: flex;
-            justify-content: flex-end;
-        }
-
-        @media handheld, only screen and (max-width: 768px) {
-            .loginBox{
-                margin:0;
-            }
-            .loginImage {
-                display: none;
-            }
-            .loginSection {
-                width: 100%;
-            }
-            .loginSectionBox{
-                width: 90%;
-            }
-            .topNav{
-                margin-top: 3%;
-                display: none;
-            }
-        }
-    </style>
+    <link type="text/css" rel="stylesheet" href="css/login.css">
 </head>
 <body>
-<?php require 'nav.html'?>
+<?php 
+    include('nav.html');
+?>
 <div class="container" style="overflow: visible">
     <div class="loginBox">
         <div class="loginImage">

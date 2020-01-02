@@ -1,9 +1,10 @@
 <?php
-include 'session.php';
-session_set_save_handler($handler, true);
+// include 'session.php';
+include 'configure.php';
+// session_set_save_handler($handler, true);
 session_start();
 if ($_POST["check"] == $_SESSION["check"]) {
-    $pwd = md5($_POST["pwd"]);//加密
+    $pwd = $_POST["pwd"];//加密
     $hand = mysqli_connect("$db_host", "$db_user", "$db_pwd") or die('数据库连接失败');
     mysqli_select_db($hand, "$db_name") or die('数据库无此库');
     $sql = "select user,nickname,email from account_user where user='$_POST[user]' and password='$pwd'";//验证账号密码

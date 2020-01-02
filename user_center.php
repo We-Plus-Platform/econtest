@@ -23,7 +23,6 @@
 </div>
 <div class="container" style="
     min-width: 700px;
-    background: #efd6b1;
     padding-top: 0.1%;
 ">
 

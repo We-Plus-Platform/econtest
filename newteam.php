@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: Byron
@@ -26,12 +27,13 @@ if ($_SESSION["user"] && isset($_POST['name']) && isset($_POST['cid']) && isset(
         $tcid = $a2["uid"];
         $time = time();
         $sql = "insert into contest_team (`cid`, `created`,`name`, `intro`,`peoplenum`,`tcid`,`status`) values('$cid','$time','$team','$intro','$num','$tcid',1)";
-        $query1 = "SELECT tid FROM contest_team where name='$user'";
-        $r1 = mysqli_query($hand, $query1);
-        $a1 = mysqli_fetch_array($r1, MYSQLI_ASSOC);
-        $tid = $a1['tid'];
-        $sql2 = "insert into contest_join (`cid`, `created`,`tid`, `uid`,`user`,`status`) values('$cid','$time','$tid','$tcid','$user',1)";
         $result = mysqli_query($hand, $sql);
+        $query1 = "SELECT tid FROM contest_team where name='$team'";
+        $r1 = mysqli_query($hand, $query1);
+        $a1 = mysqli_fetch_assoc($r1);
+        $tid = $a1['tid'];
+        $sql2 = "insert into contest_join (`cid`, `created`,`tid`, `uid`,`user`,`status`,`role`) values('$cid','$time','$tid','$tcid','$user',1,1)";
+        $result = mysqli_query($hand, $sql2);
         $return = ["msgCode" => "1"];
         echo json_encode($return);
     } else {

@@ -6,8 +6,9 @@
  * Time: 22:54
  */
 
-include 'session.php';
-session_set_save_handler($handler, true);
+// include 'session.php';
+include 'configure.php';
+// session_set_save_handler($handler, true);
 session_start();
 session_destroy();
-echo "<script>window.location.href='index.php'</script>";
+header("Location: index.php");

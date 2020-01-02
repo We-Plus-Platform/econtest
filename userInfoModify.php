@@ -6,7 +6,7 @@
  * Time: 10:42
  */
 include 'needauth.php';
-$pwd=md5("$_POST[pwd]");
+$pwd=$_POST['pwd'];
 $email=$_POST['email'];
 $qq=$_POST['qq'];
 if($handle->query("UPDATE account_user SET password='$pwd',email='$email',qq='$qq' WHERE user='$_SESSION[user]'"))

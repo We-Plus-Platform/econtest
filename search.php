@@ -63,8 +63,7 @@ function team()
                 $row3 = mysqli_fetch_assoc($result3);
                 $abc = count($row3);
                 $peoplenum = $row2["peoplenum"] - $abc;
-                $sql4 = "select user from account_user where uid='$tcid'";
-                $result4 = mysqli_query($hand, $sql4);
+                $result4 = mysqli_query($hand, "select user from account_user where uid='$tcid'");
                 $row4 = mysqli_fetch_assoc($result4);
                 $search["$num"]["tcname"] = $row4["user"];
                 $search["$num"]["contest"] = $cname;

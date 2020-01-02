@@ -96,6 +96,7 @@ function bbsPost(url) {
     })
 }
 
+
 function search(url) {
     $.ajax({
         type: "POST",

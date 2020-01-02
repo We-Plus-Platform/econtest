@@ -128,7 +128,7 @@
 }
 
 .end {
-    background-color: #efd6b1;
+    /* background-color: #efd6b1; */
     height: 100px;
     display: flex;
     justify-content: center;

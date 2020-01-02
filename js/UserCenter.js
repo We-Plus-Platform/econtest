@@ -66,7 +66,8 @@ function fileChange(target) {
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
-                //
+                console.log(xhr.responseText);
+                document.querySelector('#allUrl').src=JSON.parse(xhr.responseText)['path'];
             }
         };
 
@@ -91,6 +92,7 @@ function userInfoInit(){
             $('.infor6 span').html(data.school);
             $('.infor8 span').html(data.major);
             $('.infor0 .change0').html(data.info);
+            document.querySelector('#allUrl').src=data.portrait;
         }
     })
 }

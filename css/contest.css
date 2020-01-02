@@ -65,7 +65,7 @@ body {
     display: flex;
     width: 100%;
     height: 400px;
-    background-image: url(../images/header_bg.png);
+    /* background-image: url(../images/header_bg.png); */
     background-size: 100% 100%;
 }
 
@@ -144,7 +144,7 @@ body {
 }
 
 .jie_right {
-    width: 80%;
+    width: 300px;
     display: flex;
     justify-content: space-between;
     height: 60px;
@@ -182,7 +182,7 @@ body {
 }
 
 .sai_left {
-    width: 74.666%;
+    width: 100%;
     height: 100%;
     font-size: 18px;
     display: flex;
@@ -192,7 +192,7 @@ body {
 .sai_xin {
     height: 100%;
     width: 100%;
-    background-color: #cccccc;
+    background-color: white;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -254,11 +254,14 @@ body {
     box-shadow: 0 2px 4px 1px #767d90;
 }
 
+#tform label{
+    width: 80px;
+}
 .sai_detail, .sai_detail_search {
     width: 100%;
     height: 96px;
     margin-bottom: 1%;
-    background-color: #ffffff;
+    background-color: #e0e0e0;
     overflow: hidden;
     cursor: pointer;
     border-radius: 2px;
@@ -281,7 +284,7 @@ body {
 .sai_detail_img img, .sai_detail_img_search img {
     width: 100%;
     height: 100%;
-    display: none;
+    /* display: none; */
     background-color: #aaa;
 }
 
@@ -370,7 +373,7 @@ body {
 }
 
 .aaa {
-    background-color: #cccccc;
+    background-color: white;
     height: 100%;
     overflow: hidden;
     padding: 6% 10%;
@@ -462,6 +465,7 @@ body {
 .teamInfoCard, .teamInfoCardSearch {
     cursor: pointer;
     height: 100%;
+    margin-bottom: 13px;
     width: 24%;
     background-color: #FFF;
     display: flex;
@@ -476,8 +480,9 @@ body {
 
 .teamInfoCardImage, .teamInfoCardImageSearch {
     background-color: #757575;
-    height: 50%;
+    height: 40%;
     color: #fff;
+    line-height: 100px;
 }
 .teamInfoCardTextTitle{
     display: flex;
@@ -485,8 +490,8 @@ body {
 }
 .teamInfoCardTextTitle .title{
     margin: auto;
-    font-size: 24px;
-    color:#212121;
+    font-size: 36px;
+    color: white;
 }
 .cardTextEntry{
     font-size:16px;
@@ -496,6 +501,10 @@ body {
     display: flex;
     height: 50%;
     padding: 5%;
+}
+.teamJoin{
+    color: #2a2729;
+    align-self: flex-end;
 }
 .cardWrapper{
     display: flex;
@@ -507,7 +516,7 @@ body {
     width: 100%;
     height: 20px;
     margin-top: 20px;
-    display: flex;
+    display: none;
     justify-content: center;
 }
 
@@ -569,7 +578,7 @@ body {
 
 .thirdHead {
     height: 44px;
-    display: flex;
+    display: none;
 }
 
 .thirdOut {
@@ -628,7 +637,7 @@ body {
 .answerOut {
     display: flex;
     height: 80%;
-    background-color: #cccccc;
+    background-color: white;
     flex-direction: column;
     justify-content: space-around;
 }
@@ -644,7 +653,7 @@ body {
 
 .myQuestionOut {
     height: 80%;
-    background-color: #cccccc;
+    background-color: white;
     display: flex;
     flex-direction: column;
 }
@@ -736,6 +745,7 @@ body {
 .jie_right span:hover, .jie_right img:hover + span {
     display: block;
     transition: .2s;
+    color: black;
 }
 
 .thirdInside1, .thirdInside2, .thirdInside3, .thirdInside4, .thirdInside5 {
@@ -782,8 +792,8 @@ body {
 #modal1 {
     display: none;
     background: rgba(0, 0, 0, 0.60);
-    z-index: 998;
-    position: absolute;
+    z-index: 1031;
+    position: fixed;
     height: 100%;
     width: 100%;
 }

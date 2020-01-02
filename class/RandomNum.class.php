@@ -14,8 +14,8 @@ class RandomNum{
     }
     function image($check)//生成图像，输入值为随机数
     {
-        $image_width = 55;
-        $image_height = 18;
+        $image_width = 110;
+        $image_height = 36;
         $length=strlen($check);
         $image_b = imagecreate($image_width, $image_height);
         imagecolorallocate($image_b, 255, 255, 255);

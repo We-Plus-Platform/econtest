@@ -5,7 +5,7 @@ require(Root_Path."/../PHPMailer/src/SMTP.php");
 require(Root_Path."/../PHPMailer/src/Exception.php");
 require(Root_Path."/password.php");
 class MailSend{
-    private $username="397053880@qq.com";
+    private $username="854290678@qq.com";
     var $address;
     var $title;
     var $body;
@@ -36,7 +36,7 @@ class MailSend{
 
         //Set Params
         try {
-            $mail->SetFrom($this->username, "重邮微校");
+            $mail->SetFrom($this->username, "重邮竞赛管理系统");
         } catch (\PHPMailer\PHPMailer\Exception $e) {
         }//发件邮箱
         $mail->AddAddress($this->address);//收件邮箱
@@ -46,6 +46,6 @@ class MailSend{
             $mail->Send();
         } catch (\PHPMailer\PHPMailer\Exception $e) {
         }
-         ob_end_clean();
+        ob_end_clean();
     }
 }

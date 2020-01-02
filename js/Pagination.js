@@ -1,7 +1,7 @@
 // JavaScript Document
 //字体 #666 小字体#333
 $('.ren_img').click(function () {
-    $('.sai_ren').animate({"width": "toggle"}, 350);
+    $('.sai_ren').animate({ "width": "toggle" }, 350);
 });
 $('.sai_detail').mouseleave(function () {
     $(this).css('background-color', '#fff');
@@ -9,70 +9,90 @@ $('.sai_detail').mouseleave(function () {
 
 //获取比赛信息
 //init
-$(document).ready(function(){
-    function genCHtml(name,intro,pic){
-        let html='                            <div class="sai_detail">\n' +
+$(document).ready(function () {
+    function genCHtml(name, intro, pic) {
+        let html = '                            <div class="sai_detail">\n' +
             '                                <div class="sai_detail_img">\n' +
-            '                                    <img src="images/'+pic+'">\n' +
+            '                                    <img src="pic/' + pic + '">\n' +
             '                                </div>\n' +
             '                                <div class="sai_detail_right">\n' +
             '                                    <div class="sai_detail_name">\n' +
-            '                                        <p>\n' +name+
+            '                                        <p>\n' + name +
             '</p>\n' +
             '                                    </div>\n' +
             '                                    <div class="sai_detail_jie">\n' +
-            '                                            <span>\n' +intro+
+            '                                            <span>\n' + intro +
             '</span>\n' +
             '                                    </div>\n' +
-            '                                    <a href="#" class="sai_detail_url">查看详情...'+
+            // '                                    <a href="#" class="sai_detail_url">查看详情...'+
             '</a>\n' +
             '                                </div>\n' +
             '                            </div>';
         $('.sai_xin_main2').append(html);
     }
 
-    function genTHtml(t_name,tcname,pnum){
-        let html='<div class="teamInfoCard">\n' +
-            '                    <div class="teamInfoCardImage"></div>\n' +
-            '                    <div class="teamInfoCardText">\n' +
-            '                        <div class="cardWrapper">\n' +
-            '                            <div class="teamInfoCardTextTitle"><span class="title">'+t_name+'</span></div>\n' +
-            '                            <div class="cardTextEntry">队长：'+tcname+'</div>\n' +
-            '                            <div class="cardTextEntry">队伍人数：'+pnum+'</div>\n' +
-            '                        </div>\n' +
-            '                    </div>\n' +
-            '                </div>';
+    function genTHtml(teamid, t_name, tcname, pnum) {
+        let html = `<div class="teamInfoCard">
+                                <div class="teamInfoCardImage">
+                                  <div class="teamInfoCardTextTitle">
+                                  <span class="title">${t_name}</span>
+                                  </div>
+                                </div>
+                                <div class="teamInfoCardText">
+                                    <div class="cardWrapper">
+                                        <div class="teamid" hidden>${teamid}</div>
+                                        <div class="cardTextEntry">队长：${tcname}</div>
+                                        <div class="cardTextEntry">队伍人数：${pnum}</div>
+                                        <div class="cardTextEntry teamJoin">加入队伍</div>
+                                    </div>
+                                </div>
+                            </div>`
         $('.teamInfoSection').append(html);
     }
 
     $.ajax({
-        url:'contest_list.php?action=contest',
-        dataType:'json',
-        type:'post',
-        data:{c_page:1},
-        success:function (data) {
+        url: 'contest_list.php?action=contest',
+        dataType: 'json',
+        type: 'post',
+        data: { c_page: 1 },
+        success: function (data) {
             $('#c_total_num').val(data.allnum);
             console.log(data);
             $.each(data, function (index, objVal) {
-                genCHtml(objVal.name,objVal.intro,objVal.pic);
+                if (index !== 'allnum')
+                    genCHtml(objVal.name, objVal.intro, objVal.pic);
             })
         }
     });
 
     $.ajax({
-        url:'contest_list.php?action=team',
-        dataType:'json',
-        type:'post',
-        data:{c_page:1},
-        success:function (data) {
+        url: 'contest_list.php?action=team',
+        dataType: 'json',
+        type: 'post',
+        data: { c_page: 1 },
+        success: function (data) {
             $('#t_total_num').val(data.allnum);
             console.log(data);
-            let temp=0;
+            let temp = 0;
             $.each(data, function (index, objVal) {
                 temp++;
-                if(temp===5)
-                    return false;
-                genTHtml(objVal.name,objVal.tc_name,objVal.people);
+                // if (temp === 5)
+                //     return false;
+                if (index !== 'allnum') {
+                    genTHtml(objVal.team_id, objVal.name, objVal.tc_name, objVal.people);
+                }
+            })
+            let team = Array.from(document.querySelectorAll(".teamJoin"));
+            team.forEach(ele => {
+                ele.addEventListener("click", function (e) {
+                    let obj = e.currentTarget;
+                    let teamId = obj.parentElement.children[0].innerText;
+                    fetch(`contest_list.php?action=join_team&teamId=${teamId}`)
+                        .then(res => res.json())
+                        .then(data => {
+                            alert(data.status == 1 ? "加入成功" : data.status == 2 ? "您已加入该队伍了，不能重复加入！" : "加入失败");
+                        })
+                })
             })
         }
     });
@@ -92,7 +112,7 @@ $(document).ready(function(){
                 $('.sai_xin_main2').html('');
                 //生成
                 $.each(data, function (index, objVal) {
-                    genCHtml(objVal.name,objVal.intro,objVal.pic);
+                    genCHtml(objVal.name, objVal.intro, objVal.pic);
                 })
             },
             error: function () {
@@ -327,13 +347,4 @@ $(document).ready(function(){
 //
 //
 //
-
-
-
-
-
-
-
-
-
 
